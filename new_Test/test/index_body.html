@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=1.0, 
+                                     user-scalable=no">
+		<script src="/static/jquery/jquery-1.11.1.min.js"></script>
+		<script src="../bootstrap_js/bootstrap.js"></script>
+		<script src="../bootstrap_js/"></script>
+		<link rel="stylesheet" href="../boostrap_css/bootstrap.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery-1.5.1.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+	</head>
+	<remove-web-limits-iqxin id="rwl-iqxin" class="rwl-exempt" style="position: fixed; top: 0px; left: 0px;"><button type="button" id="rwl-setbtn"> set </button>
+		<lalala style="cursor:move;">限制解除</lalala> <input type="checkbox" name="" id="black_node">
+		<style type="text/css">
+			#rwl-iqxin {
+				position: fixed;
+				transform: translate(-90px, 0);
+				width: 85px;
+				height: 25px;
+				font-size: 12px;
+				font-weight: 500;
+				font-family: Verdana, Arial, '宋体';
+				color: #fff;
+				background: #333;
+				z-index: 2147483647;
+				margin: 0;
+				opacity: 0.05;
+				transition: 0.3s;
+				overflow: hidden;
+				user-select: none;
+				text-align: center;
+				white-space: nowrap;
+				line-height: 25px;
+				padding: 0 16px;
+				border: 1px solid #ccc;
+				border-width: 1px 1px 1px 0;
+				border-bottom-right-radius: 5px;
+				box-sizing: content-box;
+			}
+			
+			#rwl-iqxin input {
+				margin: 0;
+				padding: 0;
+				vertical-align: middle;
+				-webkit-appearance: checkbox;
+				-moz-appearance: checkbox;
+				position: static;
+				clip: auto;
+				opacity: 1;
+				cursor: pointer;
+			}
+			
+			#rwl-iqxin.rwl-active-iqxin {
+				left: 0px;
+				transform: translate(0, 0);
+				opacity: 0.9;
+				height: 32px;
+				line-height: 32px
+			}
+			
+			#rwl-iqxin label {
+				margin: 0;
+				padding: 0;
+				font-weight: 500;
+			}
+			
+			#rwl-iqxin button {
+				margin: 0;
+				padding: 0 2px;
+				border: none;
+				border-radius: 2px;
+				cursor: pointer;
+			}
+			
+			#rwl-setMenu {
+				text-align: left;
+				font-size: 14px;
+				z-index: 999999;
+				border: 1px solid cornflowerblue;
+			}
+			
+			#rwl-setMenu p {
+				margin: 5px auto;
+			}
+			
+			#list {
+				list-style: none;
+				font-size: small;
+			}
+		</style>
+		<script>
+			function listAll(id) {
+				if(id == "list1") {
+					//将list1、2、3、4的class属性移除
+					$("#list1").removeClass();
+					$("#list2").removeClass();
+					$("#list3").removeClass();
+					$("#list4").removeClass();
+					//为list1添加激活属性
+					$("#list1").addClass("active");
+					//移除tab2、3、4的class属性
+					$("#tab2").removeClass();
+					$("#tab3").removeClass();
+					$("#tab4").removeClass();
+					//将tab2、3、4的子元素的第一个div的display属性置为none
+					$("#tab2 div:first-child").css('display','none');
+					$("#tab3 div:first-child").css('display','none');
+					$("#tab4 div:first-child").css('display','none');
+					//将tab1的子元素第一个div的display属性置为inline-block
+					$("#tab1 div:first-child").css('display','inline-block');
+					//为tab1添加激活属性
+					$("#tab1").addClass("tab-pane active");
+				} else if(id == "list2") {
+					//将list1、2、3、4的class属性移除
+					$("#list1").removeClass();
+					$("#list2").removeClass();
+					$("#list3").removeClass();
+					$("#list4").removeClass();
+					//为list2添加激活属性
+					$("#list2").addClass("active");
+					//移除tab1、3、4的class属性
+					$("#tab1").removeClass();
+					$("#tab3").removeClass();
+					$("#tab4").removeClass();
+					//将tab1、3、4的子元素的第一个div的display属性置为none
+					$("#tab1 div:first-child").css('display','none');
+					$("#tab3 div:first-child").css('display','none');
+					$("#tab4 div:first-child").css('display','none');
+					//将tab2的子元素第一个div的display属性置为inline-block
+					$("#tab2 div:first-child").css('display','inline-block');
+					//为tab2添加激活属性
+					$("#tab2").addClass("tab-pane active");
+				}else if(id == "list3") {
+					//将list1、2、3、4的class属性移除
+					$("#list1").removeClass();
+					$("#list2").removeClass();
+					$("#list3").removeClass();
+					$("#list4").removeClass();
+					//为list3添加激活属性
+					$("#list3").addClass("active");
+					//移除tab2、1、4的class属性
+					$("#tab2").removeClass();
+					$("#tab1").removeClass();
+					$("#tab4").removeClass();
+					//将tab2、1、4的子元素的第一个div的display属性置为none
+					$("#tab2 div:first-child").css('display','none');
+					$("#tab1 div:first-child").css('display','none');
+					$("#tab4 div:first-child").css('display','none');
+					//将tab3的子元素第一个div的display属性置为inline-block
+					$("#tab3 div:first-child").css('display','inline-block');
+					//为tab1添加激活属性
+					$("#tab3").addClass("tab-pane active");
+				} else if(id == "list4") {
+					//将list1、2、3、4的class属性移除
+					$("#list1").removeClass();
+					$("#list2").removeClass();
+					$("#list3").removeClass();
+					$("#list4").removeClass();
+					//为list4添加激活属性
+					$("#list4").addClass("active");
+					//移除tab2、3、1的class属性
+					$("#tab2").removeClass();
+					$("#tab3").removeClass();
+					$("#tab1").removeClass();
+					//将tab2、3、1的子元素的第一个div的display属性置为none
+					$("#tab2 div:first-child").css('display','none');
+					$("#tab3 div:first-child").css('display','none');
+					$("#tab1 div:first-child").css('display','none');
+					//将tab4的子元素第一个div的display属性置为inline-block
+					$("#tab4 div:first-child").css('display','inline-block');
+					//为tab4添加激活属性
+					$("#tab4").addClass("tab-pane active");
+				}
+			}
+		</script>
+	</remove-web-limits-iqxin>
+
+	<body>
+		
+		<!--导航栏-->
+		
+		<div style="text-align: center;">
+			<div>
+				<div class="btn-group" style="width: 100%;">
+					<a>
+						<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 25%;float: left;">
+								<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+							</button>
+					</a>
+					<a>
+						<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 25%;float: left;">
+								<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+							</button>
+					</a>
+					<a>
+						<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 25%;float: left;">
+	    						<span class="glyphicon glyphicon-th-large"></span><font color="mediumspringgreen">分类</font>
+							</button>
+					</a>
+					<a>
+						<button type="button" class="btn btn-default btn-lg col-xs-3 col-lg-3" style="width: 25%;float: left;">
+	    						<span class="glyphicon glyphicon-th-large"></span><font color="mediumspringgreen">分类</font>
+							</button>
+					</a>
+				</div>
+			</div>
+			
+			<!--中间内容-->
+			<!--推荐歌单-->
+			
+			<div style="display: inline-block;width: 100%;">
+				<h2 style="float: left;">推荐歌单</h2>
+				<div style="float: right; margin-top:25px;">
+					<a href="">
+						<font>更多</font><span class="glyphicon glyphicon-chevron-right"></span></a>
+				</div>
+			</div>
+			<div>
+				<a>
+					<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 100%/3;float: left;">
+						<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+					</button>
+				</a>
+				<a>
+					<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 100%/3;float: left;">
+						<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+					</button>
+				</a>
+				<a>
+					<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 100%/3;">
+						<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+					</button>
+				</a>
+			</div>
+			
+			<!--达人歌单-->
+			
+			<div style="display: inline-block;width: 100%;">
+				<h2 style="float: left;">达人歌单</h2>
+				<div style="float: right; margin-top:25px;">
+					<a href="">
+						<font>更多</font><span class="glyphicon glyphicon-chevron-right"></span></a>
+				</div>
+			</div>
+			<div>
+				<a>
+					<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 100%/3;float: left;">
+						<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+					</button>
+				</a>
+				<a>
+					<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 100%/3;float: left;">
+						<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+					</button>
+				</a>
+				<a>
+					<button type="button" class="btn btn-default btn-lg col-xs-4 col-lg-4" style="width: 100%/3;">
+						<span class="glyphicon glyphicon-stats" style="align-items: center;"></span><font color="mediumspringgreen">排行</font>
+					</button>
+				</a>
+			</div>
+			
+			<!--猜你喜欢-->
+			
+			<div style="display: inline-block;width: 100%;">
+				<h2 style="float: left;">猜你喜欢</h2>
+				<div style="float: right; margin-top:25px;">
+					<a href="">
+						<font>查看全部</font><span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+
+				</div>
+				<div style="display: inline-block;width: 100%;">
+					<a href="">
+						<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+					</a>
+					<div>
+						<a href=""><button style="float: right;">唱歌</button></a>
+					</div>
+					<div style="text-align: left;display: table;" id="list">
+						<a href="">
+							<li>名称:第三人称</li>
+						</a>
+						<a href="">
+							<li>歌手:暂无</li>
+						</a>
+						<a href="">
+							<li>试试哼哼这首熟悉的歌吧！</li>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<!--底部内容-->
+			<!--榜单-->
+			
+			<div class="tabbable">
+				<!-- Only required for left/right tabs -->
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="active" onclick="listAll('list1')" id="list1">
+						<a href="javascript:void(0)" data-toggle="tab">点歌榜</a>
+					</li>
+					<li onclick="listAll('list2')" id="list2">
+						<a href="javascript:void(0)" data-toggle="tab">周榜</a>
+					</li>
+					<li onclick="listAll('list3')" id="list3">
+						<a href="javascript:void(0)" data-toggle="tab">月榜</a>
+					</li>
+					<li onclick="listAll('list4')" id="list4">
+						<a href="javascript:void(0)" data-toggle="tab">总榜</a>
+					</li>
+				</ul>
+				
+				<!--tab1-->
+				
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<div style="display: inline-block;width: 100%;">
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第1人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第1人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							
+						</div>
+					</div>
+					
+					<!--tab2-->
+					
+					<div class="tab-pane" id="tab2">
+						<div style="display: none;width: 100%;">
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第2人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第2人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第2人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<!--tab3-->
+					
+					<div class="tab-pane" id="tab3">
+						<div style="display: none;width: 100%;">
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第3人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第3人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第3人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<!--tab4-->
+					<div class="tab-pane" id="tab4">
+						<div style="display: none;width: 100%;">
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第4人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第4人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+							<a href="">
+								<img src="../img/likes.jpg" width="118.4px" style="float: left;" height="54.5px" />
+							</a>
+							<div>
+								<a href=""><button style="float: right;">唱歌</button></a>
+							</div>
+							<div style="text-align: left;display: table;" id="list">
+								<a href="">
+									<li>名称:第4人称</li>
+								</a>
+								<a href="">
+									<li>歌手:暂无</li>
+								</a>
+								<a href="">
+									<li>试试哼哼这首熟悉的歌吧！</li>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
